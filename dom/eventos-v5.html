@@ -1,0 +1,48 @@
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+
+<div id="contagem">
+  <p>{{ numero }}</p>
+  <!--para passar event como parametro precisa do "$". É usado quando ja tem um outro parametro, pois event é 
+    o parametro oficial quando n se tem nenhum valor no parametro-->
+  <button v-on:click="contador(5, $event)">Somar 1</button>
+  <p v-on:mousemove="atualizarXY">
+    posição mouse {{ x }} {{ y}}
+    <span v-on:mousemove.stop.prevent>PARAR EVENTO</span>
+  </p>
+  <a v-on:click.prevent="" href="https://www.google.com.br/?hl=pt-BR">Google</a>
+  <!--tambem posso encadear colocando outra tecla no v-on.keyup-->
+  <input type="text" v-on:keyup.enter.alt="alerta">
+  <!-- nesse caso a função so sera chamada quando apertar as duas teclas ao mesmo tempo-->
+</div>
+
+<script>
+  new Vue({
+    el: "#contagem",
+    data: {
+      numero: 0,
+      x: 0,
+      y: 0,
+    },
+    methods: {
+      //aqui o parametro event pode ser qualquer nome pois o que vale é na tag html
+      contador(passo, event) {
+        console.log(passo, event);
+        this.numero += passo;
+      },
+      atualizarXY(event) {
+        this.x = event.clientX;
+        this.y = event.clientY;
+      },
+      //pararEvento(event) {
+      //  event.StopPropragation();
+      //},
+
+      //prevenirEvento(event) {
+        //event.preventDefault()
+      //}
+      alerta(){
+        alert('Isso é um alerta')
+      }
+    },
+  });
+</script>

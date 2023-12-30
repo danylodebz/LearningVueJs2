@@ -1,0 +1,22 @@
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+
+<div id="contagem">
+    <p> {{ numero }}</p>
+    <button v-on:click="contador">Somar 1</button>
+</div>
+
+<script>
+    new Vue({
+        el: '#contagem',
+        data: {
+            numero: 0
+        },
+        methods: {
+            contador(){
+                //aqui eu acho que não precisou do event que nem o primeiro caso
+                //porque o event é passado como parametro para situações que eu quero que ocorra simultaneamente
+                this.numero++
+            }
+        }    
+    })
+</script>

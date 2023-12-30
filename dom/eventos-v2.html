@@ -1,0 +1,27 @@
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+
+<div id="contagem">
+    <p> {{ numero }}</p>
+    <button v-on:click="contador">Somar 1</button>
+    <p v-on:mousemove="atualizarXY">posição mouse {{ x }} {{ y}}</p>
+</div>
+
+<script>
+    new Vue({
+        el: '#contagem',
+        data: {
+            numero: 0,
+            x: 0,
+            y: 0
+        },
+        methods: {
+            contador(){
+                this.numero++
+            },
+            atualizarXY(event){
+                this.x = event.clientX
+                this.y = event.clientY
+            }
+        }    
+    })
+</script>

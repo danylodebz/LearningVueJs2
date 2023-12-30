@@ -1,0 +1,31 @@
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+
+<div id="contagem">
+    <p> {{ numero }}</p>
+    <!--para passar event como parametro precisa do "$". É usado quando ja tem um outro parametro, pois event é 
+    o parametro oficial quando n se tem nenhum valor no parametro-->
+    <button v-on:click="contador(5, $event)">Somar 1</button>
+    <p v-on:mousemove="atualizarXY">posição mouse {{ x }} {{ y}}</p>
+</div>
+
+<script>
+    new Vue({
+        el: '#contagem',
+        data: {
+            numero: 0,
+            x: 0,
+            y: 0
+        },
+        methods: {
+            //aqui o parametro event pode ser qualquer nome pois o que vale é na tag html
+            contador(passo, event){
+                console.log(passo, event)
+                this.numero += passo
+            },
+            atualizarXY(event){
+                this.x = event.clientX
+                this.y = event.clientY
+            }
+        }    
+    })
+</script>
