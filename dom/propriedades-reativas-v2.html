@@ -1,0 +1,44 @@
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+
+
+<div id="app">
+    <button v-on:click="soma">Somar 1</button>
+    <button v-on:click="contador2++">Somar 2</button>
+    <button v-on:click="subtracao">Diminuir 1</button>
+    <p>{{ contador }}</p>
+    <p>{{ contador2 }}</p>
+    <p>{{ resultado }}</p>
+</div>
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            contador: 0,
+            contador2: 0,
+        },
+        computed: {
+            resultado(){
+                console.log('metodo chamado')
+                return this.contador >= 5 ? 
+                'Maior igual a 5' : 'Menor que 5'
+            }
+        },
+        watch: {
+            contador(novo, antigo){
+                setTimeout(() => {
+                    this.contador = 0
+                }, 2000);
+            }
+        },
+        methods: {
+            soma(){
+                this.contador++
+            },
+            subtracao(){
+                this.contador--
+            },
+            
+        }
+    })
+</script>
